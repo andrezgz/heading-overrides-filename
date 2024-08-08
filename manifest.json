@@ -1,0 +1,9 @@
+{
+  "id": "heading-overrides-filename",
+  "name": "Heading Overrides Filename",
+  "description": "Renames the file based on the first level 1 heading",
+  "version": "0.1.0",
+  "minAppVersion": "1.6.0",
+  "author": "andrezgz",
+  "isDesktopOnly": false
+}
