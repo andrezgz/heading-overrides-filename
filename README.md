@@ -1,6 +1,8 @@
-# Obsidian Heading Overrides Filename (BETA)
+# Heading Overrides Filename (BETA)
 
-Obsidian plugin that renames the file based on the first level 1 heading.
+> Override (verb). To prevail over; conquer.
+
+[Obsidian](https://obsidian.md/) plugin that renames the file based on the first level 1 heading of the note.
 
 > **Warning**: This plugin will rename your files. This action is irreversible.
 
