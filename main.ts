@@ -24,6 +24,7 @@ interface HeadingOverridesFilenamePluginSettings {
   ignoreRegex: string;
   ignoredFiles: { [key: string]: null };
   allowAlphanumericOnly: boolean;
+  delayMillisecondsForHooks: number;
   useFileSaveHook: boolean;
   useFileOpenHook: boolean;
 }
@@ -34,6 +35,7 @@ const DEFAULT_SETTINGS: HeadingOverridesFilenamePluginSettings = {
   userIllegalSymbolReplacement: '',
   ignoredFiles: {},
   ignoreRegex: '',
+  delayMillisecondsForHooks: 0,
   useFileSaveHook: true,
   useFileOpenHook: true,
 };
@@ -153,6 +155,9 @@ export default class HeadingOverridesFilenamePlugin extends Plugin {
       const sanitizedHeading = this.sanitizeHeading(heading.text);
       if (sanitizedHeading.length > 0 && file.basename !== sanitizedHeading) {
         const newPath = `${file.parent.path}/${sanitizedHeading}.md`;
+        await new Promise((resolve) =>
+          setTimeout(resolve, this.settings.delayMillisecondsForHooks),
+        );
         try {
           this.isRenameInProgress = true;
           await this.app.fileManager.renameFile(file, newPath);
@@ -387,6 +392,22 @@ class FilenameHeadingSyncSettingTab extends PluginSettingTab {
       );
 
     containerEl.createEl('h3', { text: 'Hooks' });
+
+    new Setting(containerEl)
+      .setName('Delay (ms)')
+      .setDesc(
+        'Number of milliseconds to wait before triggering the rename (0 to 5000)',
+      )
+      .addText((text) =>
+        text
+          .setPlaceholder('0')
+          .setValue(this.plugin.settings.delayMillisecondsForHooks.toString())
+          .onChange(async (value) => {
+            const delay = Math.min(Math.max(parseInt(value) || 0, 0), 5000);
+            this.plugin.settings.delayMillisecondsForHooks = delay;
+            await this.plugin.saveSettings();
+          }),
+      );
 
     new Setting(containerEl)
       .setName('Use File Save Hook')
