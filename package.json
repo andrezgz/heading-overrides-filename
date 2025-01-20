@@ -1,6 +1,6 @@
 {
   "name": "heading-overrides-filename",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Renames the file based on the first level 1 heading",
   "main": "main.js",
   "scripts": {
