@@ -2,7 +2,7 @@
 
 > Override (verb). To prevail over; conquer.
 
-[Obsidian](https://obsidian.md/) plugin that renames the file based on the first level 1 heading of the note.
+[Obsidian](https://obsidian.md/) plugin that updates the filename according to the first level 1 heading (H1) in the note.
 
 > **Warning**: This plugin will rename your files. This action is irreversible.
 
@@ -19,7 +19,7 @@ Rules for replacing characters in the heading. The result is used to rename the 
 - **Custom Characters and Strings**: Individual characters or strings to be replaced.
 - **Replacement Character**: Character to replace unwanted character/strings. Leave empty to remove them.
 
-There are two hooks available to trigger the rename action automatically: one when a file is saved and another when a file is opened. Additionally, there is a command to trigger the rename action manually.
+Two hooks are available to trigger the rename action automatically: one when a file is saved and another when a file is opened. There is a **Delay** setting to control the number of milliseconds to wait before doing it and a command to manually execute it.
 
 Files can be ignored either manually or by using a rule in regex format.
 
